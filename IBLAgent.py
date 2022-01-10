@@ -180,11 +180,11 @@ class IBLAgent_TD(Agent):
 						self.last_goal_consumed = g
 						break
 				outcomes =  blended_tmp + self.alpha*(self.outcome_goals[self.last_goal_consumed] - blended_tmp)
-				## the 2 lines below is for superIBL
-				# for j in range(len(self.inst_history[(self.y, self.x, action)])):
-				# 	self.inst_history[(self.y, self.x, action)][j].update(outcomes)
-				# #Line below for IBLTD
-				self.inst_history[(self.y, self.x, action)][-1].update(outcomes)
+				## 
+				for j in range(len(self.inst_history[(self.y, self.x, action)])):
+					self.inst_history[(self.y, self.x, action)][j].update(outcomes)
+				##
+				# self.inst_history[(self.y, self.x, action)][-1].update(outcomes)
 			else:
 				if (new_pos[0],new_pos[1]) not in self.options:
 					blended_max = [self.default_utility]
